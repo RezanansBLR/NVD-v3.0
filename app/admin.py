@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import (Country)
+from .models import *
 
 admin.site.register(Country)
+admin.site.register(Account)
+admin.site.register(Ip)
+admin.site.register(Creator)
 # Register your models here.
