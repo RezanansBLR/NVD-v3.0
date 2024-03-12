@@ -1,12 +1,138 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NVD Source</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>NVD Servise</title>
 </head>
 <body>
-{% block content%}
-<h1>NVD Source</h1>
-{% endblock %}
+    <div class="wrapper">
+        <div class="left-col">
+            <a href="{% url 'index' %}" class="head-link">
+                <div class="head__l-c">
+                    <p class="title">NVD</p>
+                    <p class="fut-title">Arbotrage servise</p>
+                </div>
+            </a>
+            <a href="{% url 'create_account' %}" class="add-button">
+                <span class="add-icon"><i class="fas fa-plus-circle"></i></span>
+                Create account
+            </a>
+            <nav class="menu">
+                <ul class="menu__list">
+                    <li class="menu__item">
+                        <a href="{% url 'index' %}" class="menu__link">Главная</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Аккаунты</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Расписание</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Регистрации</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Финансы</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Информация</a>
+                    </li>
+                    <li class="menu__item">
+                        <a href="#" class="menu__link">Авторегистрации</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        {% block content %}
+        <div class="middle-col">
+            <div class="middle-col__top">
+                <div class="top-left">
+                    <ul class="top-lft-t">
+                        <li class="proffit">
+                            <ul class="proffit-t">PROFIT</ul>
+                            <ul class="proffit-f">1170 USDT</ul>
+                        </li>
+                        <li class="roi">
+                            <ul class="roi-t">ROI:</ul>
+                            <ul class="roi-f">350%</ul>
+                        </li>
+                        <li class="pay">
+                            <ul class="pay-t">Выплатили:</ul>
+                            <ul class="pay-f">6000 USDT</ul>
+                        </li>
+                    </ul>
+                    <ul class="top-lft-f">
+                        <li class="money-dep">
+                            <ul class="money-dep-t">Доход от депа:</ul>
+                            <ul class="money-dep-f">30 USDT</ul>
+                        </li>
+                        <li class="count-dep">
+                            <ul class="count-dep-t">Количество депов:</ul>
+                            <ul class="count-dep-f">45</ul>
+                        </li>
+                        <li class="balans">
+                            <ul class="balans-t">Баланс:</ul>
+                            <ul class="balans-f">1170 USDT</ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-right">
+                    <ul class="top-lft-t">
+                        <li class="pay">
+                            <ul class="pay-t">Доход в сутки:</ul>
+                            <ul class="pay-f">30 USDT</ul>
+                        </li>
+                        <li class="roi">
+                            <ul class="roi-t">Пролив:</ul>
+                            <ul class="roi-f">35 дней</ul>
+                        </li>
+                        <li class="proffit">
+                            <ul class="proffit-t">REFFIL/CPA</ul>
+                            <ul class="proffit-f">120%</ul>
+                        </li>
+                    </ul>
+                    <ul class="top-lft-f">
+                        <li class="money-dep">
+                            <ul class="money-dep-t">Остаток в банке:</ul>
+                            <ul class="money-dep-f">30 USDT</ul>
+                        </li>
+                        <li class="count-dep">
+                            <ul class="count-dep-t">Сумма сливов:</ul>
+                            <ul class="count-dep-f">-1200 USDT</ul>
+                        </li>
+                        <li class="balans">
+                            <ul class="balans-t">Расходы:</ul>
+                            <ul class="balans-f">1170 USDT</ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="middle-col__fut">
+                <div class="fut-middle">
+                    <p>ГРАФИК</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-col">
+            <ul class="partners__list">
+                {% for partner in partners %}
+                <li class="partner__item">
+                    <a href="{{ partner.link }}" class="partner__link">{{ partner.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endblock %}
+    </div>
 </body>
 </html>

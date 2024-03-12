@@ -13,7 +13,7 @@ class Country(models.Model):
 
 
 class Account(models.Model):
-    country = models.ForeignKey(Country, on_delete=models.PROTECT, verbose_name="Страна")
+    offer = models.ForeignKey('Offer', on_delete=models.PROTECT, verbose_name="Оффер")
     post = models.CharField(max_length=50, verbose_name="Почта")
     password = models.CharField(max_length=20, verbose_name="Пароль")
     config_number = models.IntegerField(default=0, verbose_name="Номер конфига")
@@ -29,7 +29,7 @@ class Account(models.Model):
 
 
 class Ip(models.Model):
-    ip = models.GenericIPAddressField(verbose_name="IP адрес")
+    ip = models.GenericIPAddressField(unique=True, verbose_name="IP адрес")
     account = models.ForeignKey(Account, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Аккаунт")
     country = models.ForeignKey(Country, on_delete=models.PROTECT, verbose_name="Страна")
 
@@ -51,3 +51,30 @@ class Creator(models.Model):
     def __str__(self):
         return self.name
 
+
+class Partner(models.Model):
+    title = models.CharField(max_length=20, verbose_name="Название")
+    link = models.URLField(verbose_name="Ссылка на ПП")
+    username = models.CharField(max_length=30, blank=True, null=True, verbose_name='Логин на ПП')
+    password = models.CharField(max_length=30,  blank=True, null=True, verbose_name='Пароль на ПП')
+
+    class Meta:
+        verbose_name = "Партнерка"
+        verbose_name_plural = "Партнерки"
+
+    def __str__(self):
+        return self.title
+
+
+class Offer(models.Model):
+    title = models.CharField(max_length=50, verbose_name="Название")
+    country = models.ForeignKey(Country, on_delete=models.PROTECT, verbose_name='Страна')
+    link = models.CharField(max_length=100, verbose_name="Ссылка для регистрации")
+    partner = models.ForeignKey(Partner, on_delete=models.CASCADE, verbose_name="Партнерка")
+
+    class Meta:
+        verbose_name = "Оффер"
+        verbose_name_plural = "Офферы"
+
+    def __str__(self):
+        return self.title
