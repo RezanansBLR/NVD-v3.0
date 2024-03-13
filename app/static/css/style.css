@@ -1,0 +1,203 @@
+html{
+    box-sizing: border-box;
+    font-family: 'Russo One', sans-serif;
+    font-size: 20px;
+    background-color: #666666;
+    color: #FFF;
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: inherit;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+button{
+    border: 0;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left-col, .right-col{
+    padding: 0px 25px 0px 25px;
+    height: 100vh;
+    background-color: #333333;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    color: #FFF;
+}
+
+.right-col{
+    padding: 20px;
+}
+
+.head-link{
+    width: 100%;
+}
+
+.head__l-c{
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    padding-top: 20px;
+    border-bottom: 1px solid #FFF;
+}
+
+.title{
+    font-size: 48px;
+    letter-spacing: 1px;
+}
+
+.fut-title{
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.add-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 17px 10px;
+    background-color: #ACE06A;
+    color: #000;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #06A56C;
+}
+
+.add-icon {
+    margin-right: 5px;
+}
+
+.menu{
+    margin-top: 60px;
+}
+
+.menu__item{
+    font-size: 24px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.menu__item:hover{
+    background-color: #ffffff4d;
+}
+
+.middle-col{
+    width: 100%;
+    padding-top: 100px;
+
+}
+
+.middle-col__top{
+    display: flex;
+}
+
+.top-left, .top-right{
+    color: #CCCCCC;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding: 25px 25px 50px 25px;
+    width: 600px;
+    height: 275px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: #333333;
+}
+
+.middle-col__fut{
+    margin: 100px 50px 0px 50px ;
+}
+
+.fut-middle{
+    height: 400px;
+    border-radius: 20px;
+    border: 1px solid #fff;
+    background-color: #333333;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 40px;
+}
+
+.top-lft-t, .top-lft-f{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+
+.proffit-t{
+    font-size: 40px;
+}
+
+.proffit-f{
+    color: #28a745;
+    font-size: 36px;
+}
+
+.roi-f,
+.balans-f, 
+.money-dep-f,
+.count-dep-f,
+.pay-f{
+    color: #FFF;
+}
+
+.partner__item{
+    margin-top: 20px;
+    color: #000;
+    text-align: center;
+    background-color: #ACE06A;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.partner__item:hover {
+    background-color: #06A56C;
+}
+
+
+
+/* Создать аккаунт*/
+.middle-col h2{
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: normal;
+    
+}
