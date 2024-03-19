@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Account, Ip
+from .models import Account, Ip, Offer
 
 
 class IpForm(forms.ModelForm):
@@ -22,8 +22,12 @@ class AccountForm(forms.ModelForm):
 
     def clean_ip(self):
         ip_address = self.cleaned_data['ip']
-        if Ip.objects.filter(ip=ip_address).exists():
-            raise forms.ValidationError("Этот IP адрес уже существует в базе данных.")
+        offer = self.cleaned_data['offer']
+        try:
+            Ip.objects.get(ip=ip_address, country__offer__title=offer)
+            raise forms.ValidationError("IP-адрес уже использовался.")
+        except Ip.DoesNotExist:
+            pass
         return ip_address
 
     def save(self, commit=True):

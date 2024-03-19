@@ -14,9 +14,7 @@ def create_account(request):
     if request.method == 'POST':
         form = AccountForm(request.POST)
         if form.is_valid():
-            account = form.save(commit=False)
-            account.date = datetime.now()
-            account.save()
+            form.save(commit=False)
             return redirect('index')
     else:
         form = AccountForm()

@@ -29,7 +29,7 @@ class Account(models.Model):
 
 
 class Ip(models.Model):
-    ip = models.GenericIPAddressField(unique=True, verbose_name="IP адрес")
+    ip = models.GenericIPAddressField(verbose_name="IP адрес")
     account = models.ForeignKey(Account, on_delete=models.PROTECT, blank=True, null=True, verbose_name="Аккаунт")
     country = models.ForeignKey(Country, on_delete=models.PROTECT, verbose_name="Страна")
 
