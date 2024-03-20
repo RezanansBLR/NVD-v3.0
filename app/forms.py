@@ -13,7 +13,7 @@ class AccountForm(forms.ModelForm):
     ip = forms.GenericIPAddressField(label='IP адрес')
     class Meta:
         model = Account
-        fields = ['offer', 'post', 'password', 'config_number', 'creator']
+        fields = ['offer', 'login', 'password', 'config_number', 'creator']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

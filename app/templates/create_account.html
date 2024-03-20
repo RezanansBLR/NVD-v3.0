@@ -6,10 +6,50 @@
     <h2>Создать аккаунт</h2>
     <form method="post">
         {% csrf_token %}
+        <button type="button" id="generate-login">
+            <i class="fas fa-sync-alt"></i>
+        </button>
         {{ form.as_p }}
+        <span id="account-age"></span>
         <button type="submit">Create</button>
     </form>
 
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("generate-login").addEventListener("click", function() {
+            var offer = document.getElementById("id_offer").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "{% url 'generate_credentials' %}?offer=" + offer, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    document.getElementById("id_login").value = data.login;
+                    document.getElementById("id_password").value = data.password;
+                }
+            };
+            xhr.send();
+        });
+    });
 
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("id_config_number").addEventListener("change", function() {
+            var configNumber = this.value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "{% url 'check_account_age' %}?config_number=" + configNumber, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var accountAge = JSON.parse(xhr.responseText).account_age;
+                    if (accountAge === "Не использовался") {
+                        document.getElementById("account-age").innerText = accountAge;
+                    }
+                else {
+                    document.getElementById("account-age").innerText = accountAge + " дней назад";
+                } 
+                }
+            };
+            xhr.send();
+        });
+    });
+</script>
 {% endblock %}

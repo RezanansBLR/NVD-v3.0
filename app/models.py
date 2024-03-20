@@ -14,7 +14,7 @@ class Country(models.Model):
 
 class Account(models.Model):
     offer = models.ForeignKey('Offer', on_delete=models.PROTECT, verbose_name="Оффер")
-    post = models.CharField(max_length=50, verbose_name="Почта")
+    login = models.CharField(max_length=50, verbose_name="Логин")
     password = models.CharField(max_length=20, verbose_name="Пароль")
     config_number = models.IntegerField(default=0, verbose_name="Номер конфига")
     creator = models.ForeignKey('Creator', on_delete=models.PROTECT, verbose_name="Создатель")
