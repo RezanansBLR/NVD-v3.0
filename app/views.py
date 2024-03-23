@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import AccountForm
-from .models import Partner, Offer, Account
+from .models import Partner, Offer, Account, Ip
 
 from django.http import JsonResponse
 from django.utils import timezone
@@ -22,19 +22,34 @@ def create_account(request):
         form = AccountForm()
     return render(request, 'create_account.html', {'form': form})
 
+
+
+
 def generate_random_credentials(request):
     print(Offer.objects.get(pk=request.GET.get('offer')).country)
     login = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     password = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=12))
     return JsonResponse({'login': login, 'password': password})
 
-def check_account_age(request):
+def check_config(request):
     config_number = request.GET.get('config_number')
 
     account = Account.objects.filter(config_number=config_number).order_by('-date').first()
     if account:
         today = timezone.now()
-        account_age = (today - account.date).days
+        config_info = (today - account.date).days
     else:
-        account_age = 'Не использовался'
-    return JsonResponse({'account_age': account_age})
+        config_info = 'Не использовался'
+    return JsonResponse({'config_info': config_info})
+
+def check_ip(request):
+    ip = request.GET.get('ip')
+    offer = request.GET.get('offer')
+
+    try:
+        Ip.objects.get(ip=ip, country__offer__pk=offer)
+        ip_info = 'IP-адрес уже использовался!'
+    except Ip.DoesNotExist:
+        ip_info = 'IP-адрес уникальный'
+    
+    return JsonResponse({'ip_info': ip_info})

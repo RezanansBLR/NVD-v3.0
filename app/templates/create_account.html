@@ -2,19 +2,29 @@
 
 {% block content %}
 
-<div class="middle-col">
-    <h2>Создать аккаунт</h2>
-    <form method="post">
-        {% csrf_token %}
-        <button type="button" id="generate-login">
-            <i class="fas fa-sync-alt"></i>
-        </button>
-        {{ form.as_p }}
-        <span id="account-age"></span>
-        <button type="submit">Create</button>
-    </form>
-
-</div>
+        <div class="middle-col">
+            <div class="middle-wraper">
+                <h2>Создать аккаунт</h2>
+                <form class="create_account" method="post">
+                    {% csrf_token %}
+                    <button type="button" id="generate-login">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button type="button" id="check-config">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <button type="button" id="check-ip">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <span id="config-info"></span>
+                    <span id="ip-info"></span>
+                    {{ form.as_p }}
+                    <div class="create-button-wrap">
+                        <button class="create-button" type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("generate-login").addEventListener("click", function() {
@@ -33,18 +43,39 @@
     });
 
     document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("id_config_number").addEventListener("change", function() {
-            var configNumber = this.value;
+        document.getElementById("check-config").addEventListener("click", function() {
+            var config = document.getElementById("id_config_number").value;
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', "{% url 'check_account_age' %}?config_number=" + configNumber, true);
+            xhr.open('GET', "{% url 'check_config' %}?config_number=" + config, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    var accountAge = JSON.parse(xhr.responseText).account_age;
-                    if (accountAge === "Не использовался") {
-                        document.getElementById("account-age").innerText = accountAge;
+                    var configInfo = JSON.parse(xhr.responseText).config_info;
+                    if (configInfo === "Не использовался") {
+                        document.getElementById("config-info").innerText = configInfo;
                     }
                 else {
-                    document.getElementById("account-age").innerText = accountAge + " дней назад";
+                    document.getElementById("config-info").innerText = configInfo + " дней назад";
+                } 
+                }
+            };
+            xhr.send();
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("check-ip").addEventListener("click", function() {
+            var ip = document.getElementById("id_ip").value;
+            var offer = document.getElementById("id_offer").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', "{% url 'check_ip' %}?ip=" + ip + "&offer=" + offer, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    var ipInfo = JSON.parse(xhr.responseText).ip_info;
+                    if (ipInfo === "IP-адрес уже использовался!") {
+                        document.getElementById("ip-info").innerText = ipInfo;
+                    }
+                else {
+                    document.getElementById("ip-info").innerText = "IP-адрес уникальный";
                 } 
                 }
             };

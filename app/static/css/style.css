@@ -201,8 +201,71 @@ button{
     
 }
 
+.middle-wraper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create_account{
+    margin-top: 50px;
+}
+
+.create_account p input, select{
+    width: 100%;
+}
+
 #generate-login{
     position: relative;
-    top: 50px;
-    left: 260px;
+    top: 100px;
+    left: 250px;
+}
+
+#id_config_number{
+    width: 75px;
+}
+
+#check-config{
+    position: relative;
+    top: 175px;
+    left: 220px;
+}
+
+#config-info{
+    position: relative;
+    top: 177px;
+    left: 210px;   
+}
+
+#check-ip{
+    position: relative;
+    top: 275px;
+    left: 185px;
+}
+
+#ip-info{
+    position: absolute;
+    top: 287px;
+    left: 625px;   
+}
+
+.create-button-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.create-button{
+    margin-top: 30px;
+    padding: 5px 10px;
+    background-color: #ACE06A;
+    font-family: 'Russo One', sans-serif;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-button:hover {
+    background-color: #06A56C;
 }
