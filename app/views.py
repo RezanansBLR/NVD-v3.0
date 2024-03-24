@@ -23,13 +23,12 @@ def create_account(request):
     return render(request, 'create_account.html', {'form': form})
 
 
-
-
 def generate_random_credentials(request):
     print(Offer.objects.get(pk=request.GET.get('offer')).country)
     login = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
     password = ''.join(random.choices(string.ascii_letters + string.digits + string.punctuation, k=12))
     return JsonResponse({'login': login, 'password': password})
+
 
 def check_config(request):
     config_number = request.GET.get('config_number')
@@ -41,6 +40,7 @@ def check_config(request):
     else:
         config_info = 'Не использовался'
     return JsonResponse({'config_info': config_info})
+
 
 def check_ip(request):
     ip = request.GET.get('ip')

@@ -211,13 +211,17 @@ button{
     margin-top: 50px;
 }
 
+.create_account p{
+    margin-top: 10px;
+}
+
 .create_account p input, select{
     width: 100%;
 }
 
 #generate-login{
     position: relative;
-    top: 100px;
+    top: 120px;
     left: 250px;
 }
 
@@ -227,7 +231,7 @@ button{
 
 #check-config{
     position: relative;
-    top: 175px;
+    top: 215px;
     left: 220px;
 }
 
@@ -239,8 +243,8 @@ button{
 
 #check-ip{
     position: relative;
-    top: 275px;
-    left: 185px;
+    top: 335px;
+    left: 188px;
 }
 
 #ip-info{
